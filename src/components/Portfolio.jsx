@@ -1,0 +1,93 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/autoplay';
+
+import project1 from '../assets/Project1.png';
+import project2 from '../assets/Project2.png';
+import project3 from '../assets/Project3.png';
+import project4 from '../assets/Project4.png';
+
+function Portfolio() {
+    const projects = [
+      {
+        title: 'GitHub CI/CD Pipeline',
+        description: 'Automating cloud deployments using GitHub Actions and Google Cloud Functions for University Integrations.',
+        image: project1,
+      },
+      {
+        title: 'SITS Data Integration',
+        description: 'Enhancing data workflows and automations in higher education systems.',
+        image: project2,
+      },
+      {
+        title: 'Crusadarr',
+        description: 'A personal project creating a web app to manage and track Warhammer 40K Crusade campaigns.',
+        image: project3,
+        link: 'https://crusadarr.uk/',
+      },
+      {
+        title: 'Future Project',
+      description: 'Future Project 4.',
+      image: project4,
+    },
+    {
+      title: 'Future Project',
+      description: 'Future Project 5.',
+      image: project4,
+    },
+    {
+      title: 'Future Project',
+      description: 'Future Project 6.',
+      image: project4,
+    },
+  ];
+
+  return (
+    <section className="p-6 max-w-6xl mx-auto">
+      <h2 className="text-2xl font-bold mb-4">Portfolio</h2>
+      <Swiper
+        modules={[Autoplay]}
+        spaceBetween={30}
+        slidesPerView={3}
+        loop={true}
+        freeMode={true}
+        autoplay={{
+          delay: 0,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
+        speed={4000} // Lower is faster, higher is slower
+        grabCursor={true}
+      >
+        {projects.map((project, index) => (
+          <SwiperSlide key={index}>
+          <div className="rounded-lg overflow-hidden bg-gray-800 shadow-[0_12px_20px_rgba(0,0,0,0.15)]">
+            {project.link ? (
+              <a href={project.link} target="_blank" rel="noopener noreferrer">
+                <div className="transition-transform duration-300 transform hover:scale-105">
+                  <img src={project.image} alt={project.title} className="w-full h-40 object-cover" />
+                  <div className="p-4 min-h-[140px] flex flex-col justify-between">
+                    <h3 className="text-lg font-bold mb-2">{project.title}</h3>
+                    <p className="text-gray-300">{project.description}</p>
+                  </div>
+                </div>
+              </a>
+            ) : (
+              <div className="transition-transform duration-300 transform hover:scale-105">
+                <img src={project.image} alt={project.title} className="w-full h-40 object-cover" />
+                <div className="p-4 min-h-[140px] flex flex-col justify-between">
+                  <h3 className="text-lg font-bold mb-2">{project.title}</h3>
+                  <p className="text-gray-300">{project.description}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </SwiperSlide>
+        ))}
+      </Swiper>
+    </section>
+  );
+}
+
+export default Portfolio;
