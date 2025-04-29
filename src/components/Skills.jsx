@@ -4,8 +4,8 @@ function Skills() {
         <h2 className="text-2xl font-bold mb-2">Skills</h2>
         <div className="grid grid-cols-2 gap-4 text-gray-300">
         <div>Azure</div>
-        <div>Google Cloud Platform (GCP)</div>
-        <div>SITS Student Records</div>
+        <div>Google Cloud Platform</div>
+        <div>SITS</div>
         <div>GitHub Actions</div>
         <div>C#</div>
         <div>Python</div>

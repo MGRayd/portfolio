@@ -46,10 +46,10 @@ function Portfolio() {
   return (
     <section className="p-6 max-w-6xl mx-auto">
       <h2 className="text-2xl font-bold mb-4">Portfolio</h2>
+      <div className="px-4 sm:px-0">
       <Swiper
         modules={[Autoplay]}
         spaceBetween={30}
-        slidesPerView={3}
         loop={true}
         freeMode={true}
         autoplay={{
@@ -57,35 +57,62 @@ function Portfolio() {
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
-        speed={4000} // Lower is faster, higher is slower
+        speed={4000}
         grabCursor={true}
+        breakpoints={{
+          0: {
+            slidesPerView: 1, // On very small screens (e.g. phones)
+          },
+          640: {
+            slidesPerView: 2.2, // On tablets/small laptops
+          },
+          1024: {
+            slidesPerView: 3,   // On desktop and large screens
+          },
+        }}
       >
         {projects.map((project, index) => (
           <SwiperSlide key={index}>
-          <div className="rounded-lg overflow-hidden bg-gray-800 shadow-[0_12px_20px_rgba(0,0,0,0.15)]">
-            {project.link ? (
-              <a href={project.link} target="_blank" rel="noopener noreferrer">
+          <div className="w-full sm:w-[300px] flex-shrink-0 mr-4 sm:mr-0">
+            <div className="rounded-lg overflow-hidden bg-gray-800 shadow-[0_6px_20px_rgba(0,0,0,0.2)]">
+              {project.link ? (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit ${project.title}`}
+                >
+                  <div className="transition-transform duration-300 transform hover:scale-105">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-40 object-cover rounded-t-lg"
+                    />
+                    <div className="p-4 min-h-[140px] flex flex-col justify-between">
+                      <h3 className="text-lg font-bold mb-2">{project.title}</h3>
+                      <p className="text-gray-300 text-sm">{project.description}</p>
+                    </div>
+                  </div>
+                </a>
+              ) : (
                 <div className="transition-transform duration-300 transform hover:scale-105">
-                  <img src={project.image} alt={project.title} className="w-full h-40 object-cover" />
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-40 object-cover rounded-t-lg"
+                  />
                   <div className="p-4 min-h-[140px] flex flex-col justify-between">
                     <h3 className="text-lg font-bold mb-2">{project.title}</h3>
-                    <p className="text-gray-300">{project.description}</p>
+                    <p className="text-gray-300 text-sm">{project.description}</p>
                   </div>
                 </div>
-              </a>
-            ) : (
-              <div className="transition-transform duration-300 transform hover:scale-105">
-                <img src={project.image} alt={project.title} className="w-full h-40 object-cover" />
-                <div className="p-4 min-h-[140px] flex flex-col justify-between">
-                  <h3 className="text-lg font-bold mb-2">{project.title}</h3>
-                  <p className="text-gray-300">{project.description}</p>
-                </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </SwiperSlide>
+        </SwiperSlide>        
         ))}
       </Swiper>
+      </div>
     </section>
   );
 }
