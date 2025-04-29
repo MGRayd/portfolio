@@ -2,7 +2,7 @@
   "name": "my-cv-site",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/MGRayd/portfolio.git",
+  "homepage": "https://mgrayd.github.io/portfolio",
   "dependencies": {
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
